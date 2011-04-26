@@ -1,0 +1,16 @@
+-if(errors)
+	ul#errors
+		- each error in errors
+			li #{error}
+form(action="register",method="POST")
+	p
+		label(for="username") Your username: 
+			input(type="text",id="username",name="user[nick]")
+	p
+		label(for="password") Your password:
+			input(type="password",id="password",name="user[password]")
+	p
+		label(for="confirmpassword") Please confirm your password:
+			input(type="password",id="confirmpassword",name="user[confirmpassword]")
+	div.buttons
+		input(type='submit',value='register')
