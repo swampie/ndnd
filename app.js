@@ -50,17 +50,23 @@ app.get('/register',function(req,res){
 app.post('/register',function(req,res){
 	var userParams = req.body.user;
 	var errors = [];
-	if(!userParams.username || userParams.username == ''){
+	
+	if(!userParams.nick|| userParams.nick == ''){
 		errors.push('Username could not be empty');
 	}
 	if(!userParams.password || userParams.password == ''){
 		errors.push('Password could not be empty');
 	}
-	console.log(errors.length);
+	if(!userParams.confirmpassword || userParams.confirmpassword == ''){
+		errors.push('Confirm Password could not be empty');
+	}
+	if(!(userParams.confirmpassword==userParams.password)){
+		errors.push('Password and confirm should match');
+	}
 	if(errors.length > 0){
-		res.render('register',{title:'Please register',user:userParams,			errors:errors});
+		res.render('register',{title:'Please register',user:userParams,errors:errors});
 	}else{
-		res.render('index',{title:'Express'})
+		res.redirect('/')
 	}
 	
 });
